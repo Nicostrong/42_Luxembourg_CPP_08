@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 15:44:22 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/02/25 17:35:53 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/02/26 10:29:16 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ class NotFound : public std::exception
 
 		virtual const char *what() const throw()
 		{
-			return (RED"\tException: Value not found."RESET);
+			return (RED"Exception: Value not found."RESET);
 		}
 
 };
