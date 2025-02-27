@@ -1,0 +1,126 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    info_container_sequenciel                          :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2025/02/27 08:42:46 by nfordoxc          #+#    #+#              #
+#    Updated: 2025/02/27 09:31:27 by nfordoxc         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+
+Les containers de sequences
+
+1)	la stack:
+
+	#include <stack>
+
+	le container <stack> est une structure de donnees qui suit le principe LIFO.
+	C-a-d le dernier element ajoute est le premier a sortir.
+
+	Les methodes:
+		.push(n)=> pour ajouter l element n dans la stack.
+		.pop()	=> pour retirer un element de la stack.
+		.top()	=> pour acceder a l element en tete de stack.
+		.empty()=> pour verifier si la stack est vide.
+		.size()	=> pour obtenir le nombre d element dans la stack.
+	
+	Conteneur sous-jacents:
+		stack utilise en realite un adaptateur de conteneur qui utilise d autres
+		conteneurs.
+		Par default il utilise <deque>, mais peut utiliser <vector> ou <list>.
+	Limites:
+		Il ne fournis pas d iterateurs pour parcourir ses elements.
+
+2) le vertor:
+
+	#include <vector>
+
+	<vector> est une structure de donnees dynamique qui permet de gerer des
+	tableaux de taille variable.
+
+	les methodes:
+		.push_back(N)	=> pour inserer en bas de tableau N.
+		.pop_back()		=> pour supprimer le dernier element du tableau.
+		.insert(N)		=> pour inserer N.
+		.erase()		=> pour supprimer un element.
+		.at(X)			=> pour acceder a l element X.
+		[X]				=> pour acceder a l element X.
+		.size()			=> pour avoir le nombre d element dans le tableau.
+		.capacity()		=> pour connaitre la capacite du tableau.
+		.empty()		=> pour savoir si le tableau est vide.
+	
+	Reallocatoin:
+		lorsque on veut ajouter un nouvel element a notre tableau et que nous
+		depassons la capacite, un nouveau tableau est cree avec une capacite
+		double, et chaque element y est copie avant l ajout du dernier element.
+	
+	Iterateur:
+		<vector> prend en charge des iterateurs bidirectionnels pour parcourir
+		le tableau dans les deux sens, mais il prend aussi des iterateurs
+		aleatoires pour acceder directement a un element du tableau.
+	
+	<vector> est tres performant pour les tableau dynamique avec un acces direct
+	aux elements et des operations tres efficaces a la finc de la sequence.
+
+
+3) la list:
+
+	#inclide <list>
+
+	<list> est une structure de donnees doublement chainee permetant l insertion
+	et la suppression de n importe quel element dans la liste.
+
+	les methodes:
+		.pusch_back(N)	=> pour ajouter en fin de liste l element N.
+		.push_front(N)	=> pour ajouter en tete de liste l element N.
+		.pop_back()		=> pour retirer le dernier element.
+		.pop_front()	=> pour retirer le premier element.
+		.insert(N)		=> pour inserer l element N.
+		.erase(X)		=> pour supprimer l element a l index X.
+		.front()		=> pour acceder au premier element de la liste.
+		.back()			=> pour acceder au dernier element de la liste.
+		.empty()		=> pour verifier si la liste est vide.
+		.size()			=> pour obtenir le nombre d element dans la liste.
+	
+	Acces aux elements:
+		contrairement a <deque> et <vector>, <list> ne permet pas un acces
+		direct aux elements a l aide de l operateur [] ou de la methode .at().
+		on doit utiliser des iterateurs pour acceder aux elements.
+
+	Performance:
+		pour inserer ou supprimer un element dans la liste, sont facile et
+		performante car elles modifient juste les pointeurs de liensentre les
+		elements.
+		pour acceder a un element de la liste, il faut la parcourir jusqu a l
+		element recherche.
+	Iterateur:
+		<list> fournit des iterateurs bidirectionnels pour parcourir les
+		elements dans les deux sens. ils ne deviennent pas invalides lors de l
+		insertion ou la supression d un element sauf si l element pointe est
+		supprime.
+
+	<list> est un conteneur ideal pour les senarios ou on a besoin d inserer et
+	de supprimer frequement des elements, mais ou l acces direct aux elements n
+	est pas une priorite.
+
+4) la deque:
+
+	#include <deque>
+
+	Le conteneur <deque> fournis des methodes similqire a <vector> et <list>.
+	Ca le rend assez flexible. Il prend en charge l acces direct aux elements,
+	l insertion, la suppression et l iteration.
+
+	Pour acceder a un element d une <deque> on utilise l operateur [] ou la
+	methode .at(x).
+	Les elements sont stockes dans un ordre contigu, mais contrairement a
+	<vector>, <deque> est optimise pour les insertions et suppressios aux deux
+	extremites.
+	Par consequence, inserer ou supprimer un element au milieu est plus long.
+
+	<deque> fournit des iterateurs bidirectionnels, on peut donc parcourir une
+	<deque> dans les deux sens.
+
