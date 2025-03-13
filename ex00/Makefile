@@ -6,7 +6,7 @@
 #    By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/17 17:58:03 by nfordoxc          #+#    #+#              #
-#    Updated: 2025/02/25 16:00:05 by nfordoxc         ###   Luxembourg.lu      #
+#    Updated: 2025/03/13 16:05:18 by nfordoxc         ###   Luxembourg.lu      #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@
 ################################################################################
 
 CXX				=	c++
-CXXFLAGS		=	-Wall -Werror -Wextra -Wshadow -Wno-shadow -g
+CXXFLAGS		=	-Wall -Werror -Wextra -g
 CXX_OPT			=	-std=c++98
 CXX_DEF			=	
 
