@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 17:40:08 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/02/26 10:44:13 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/03/13 16:54:59 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,10 +71,9 @@ Span		&Span::operator=( Span const &src_object )
  */
 void		Span::addNumber( int n )
 {
-	if (this->_numbers.size() < this->_maxSize)
-		this->_numbers.push_back(n);
-	else
+	if (this->_numbers.size() >= this->_maxSize)
 		throw Span::FullSpanException();
+	this->_numbers.push_back(n);
 	return ;
 }
 
@@ -83,10 +82,9 @@ void		Span::addNumber( int n )
  */
 void		Span::addNumber( std::vector<int>::iterator begin, std::vector<int>::iterator end )
 {
-	if (this->_numbers.size() + std::distance(begin, end) <= this->_maxSize)
-		this->_numbers.insert(this->_numbers.end(), begin, end);
-	else
+	if (this->_numbers.size() + std::distance(begin, end) > this->_maxSize)
 		throw Span::FullSpanException();
+	this->_numbers.insert(this->_numbers.end(), begin, end);
 	return ;
 }
 
@@ -96,20 +94,17 @@ void		Span::addNumber( std::vector<int>::iterator begin, std::vector<int>::itera
 int			Span::shortestSpan( void )
 {
 	std::vector<int>	sorted;
-	int					span;
+	int					minSpan;
 	
 	if (this->_numbers.size() < 2)
 		throw Span::NoSpanException();
 
 	sorted = this->_numbers;
 	std::sort(sorted.begin(), sorted.end());
-	span = sorted.at(1) - sorted.at(0);
+	minSpan = sorted[1] - sorted[0];
 	for (size_t i = 1; i < (sorted.size() - 1); i++)
-	{
-		if (sorted.at(i + 1) - sorted.at(i) < span)
-			span = sorted.at(i + 1) - sorted.at(i);
-	}
-	return (span);
+		minSpan = std::min(minSpan, sorted[i + 1] - sorted[i]);
+	return (minSpan);
 }
 
 /*
@@ -117,16 +112,10 @@ int			Span::shortestSpan( void )
  */
 int			Span::longestSpan( void )
 {
-	int		minVal;
-	int		maxVal;
-
 	if (this->_numbers.size() < 2)
 		throw Span::NoSpanException();
-	
-	minVal = *std::min_element(this->_numbers.begin(), this->_numbers.end());
-	maxVal = *std::max_element(this->_numbers.begin(), this->_numbers.end());
-
-	return (maxVal - minVal);
+	return (*std::max_element(this->_numbers.begin(), this->_numbers.end()) -
+			*std::min_element(this->_numbers.begin(), this->_numbers.end()));
 }
 
 /*******************************************************************************
