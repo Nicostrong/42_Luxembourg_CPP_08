@@ -6,7 +6,7 @@
 /*   By: nfordoxc <nfordoxc@42luxembourg.lu>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 10:52:20 by nfordoxc          #+#    #+#             */
-/*   Updated: 2025/02/27 11:17:41 by nfordoxc         ###   Luxembourg.lu     */
+/*   Updated: 2025/03/13 17:36:21 by nfordoxc         ###   Luxembourg.lu     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,26 @@
 # define MUTANTSTACK_HPP
 
 # include <iostream>
-# include <string>
 # include <stack>
-# include <deque>
 
-template < typename T >
-class MutantStack:	public std::stack<T>
+template < typename T, typename Container = std::deque<T> >
+class MutantStack:	public std::stack<T, Container>
 {
 
 	public:
 
-		typedef typename std::deque<T>::iterator				iterator;
-		typedef typename std::deque<T>::const_iterator			const_iterator;
-		typedef typename std::deque<T>::reverse_iterator		reverse_iterator;
-		typedef typename std::deque<T>::const_reverse_iterator	const_reverse_iterator;
+		typedef typename Container::iterator				iterator;
+		typedef typename Container::const_iterator			const_iterator;
+		typedef typename Container::reverse_iterator		reverse_iterator;
+		typedef typename Container::const_reverse_iterator	const_reverse_iterator;
 
-		MutantStack( void ) : std::stack<T>() {}
-		MutantStack( const MutantStack &src_object ) : std::stack<T>( src_object ) {}
+		MutantStack( void ) : std::stack<T, Container>() {}
+		MutantStack( const MutantStack &src_object ) : std::stack<T, Container>( src_object ) {}
 		MutantStack		&operator=( const MutantStack &src_object )
 		{
 			if (this != &src_object)
 			{
-				std::stack<T>::operator=(src_object);
+				std::stack<T, Container>::operator=(src_object);
 			}
 			return (*this);
 		}
