@@ -13,6 +13,7 @@
 #include "Easyfind.hpp"
 #include <vector>
 #include <list>
+#include <deque>
 
 int	main( void )
 {
